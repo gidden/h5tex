@@ -1,0 +1,10 @@
+\begin{table}[{options}]
+\centering
+\label{{{label}}}
+\caption{{{caption}}}
+\begin{tabular}{{{layout}}}
+\hline
+{titles}
+{entries}
+\end{tabular}
+\end{table}
