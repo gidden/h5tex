@@ -54,7 +54,6 @@ def read_type(x):
         raise KeyError("H5T for {0} not supported. Line read: {1}".format(name, x))
     
     if h5t is 'array':
-        print(x)
         x = x[0].split()
         h5t = h5ts[x[3]]
         n = x[2][1:-1]
