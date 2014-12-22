@@ -6,6 +6,7 @@ import argparse as ap
 import subprocess
 from collections import namedtuple, defaultdict
 import io
+import re
 
 from run_control import RunControl, NotSpecified, parse_rc
 
@@ -123,6 +124,8 @@ def gen_parser():
     p.add_argument('-t', '--template', default=None, help=h)
     h = "Print out debug statements."
     p.add_argument('--debug', action='store_true', default=False, help=h)
+    h = "Skip datasets matching a pattern."
+    p.add_argument('--skip', default=None, help=h)
     
     return p
 
@@ -141,6 +144,10 @@ def main():
         template = _tbl_template
 
     for s in sets:
+        print(s)
+        if args.skip and re.match(args.skip, s):
+            print('skipping', s)
+            continue
         if args.debug:
             print(s)
         name = s.split('/')[-1]
