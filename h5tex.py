@@ -154,9 +154,9 @@ def main():
         entry_template = rc.entry_template or "{0} & {1} & {2} \\\\ \\hline\n"
         descriptions = rc.descriptions or defaultdict(str)
         entries = ''
-        for name, dtstr in datatypes(db, s):
-            entries += entry_template.format(tex_clean(name), 
-                                             dtstr, tex_clean(descriptions[name]))
+        for col, dtstr in datatypes(db, s):
+            entries += entry_template.format(tex_clean(col), 
+                                             dtstr, tex_clean(descriptions[col]))
         tbl = template.format(options=options, 
                               label=label.format(name), 
                               caption=caption.format(name), 
