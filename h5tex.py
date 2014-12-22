@@ -28,6 +28,10 @@ h5ts = {
     'H5T_ARRAY': 'array',
 }
 
+tex_replace = {
+    '_',
+}
+
 _tbl_template = """\\begin{{table}}[{options}]
 \centering
 \label{{{label}}}
@@ -45,6 +49,11 @@ def first_idx(x, lst):
 
 def all_idxs(x, lst):
     return [i for i, _ in enumerate(lst) if x in _]
+
+def tex_clean(s):
+    for x in tex_replace:
+        s = s.replace(x, '\{0}'.format(x))
+    return s
 
 def read_type(x):
     name = x[-1].split("\"")[1]
@@ -146,7 +155,8 @@ def main():
         descriptions = rc.descriptions or defaultdict(str)
         entries = ''
         for name, dtstr in datatypes(db, s):
-            entries += entry_template.format(name, dtstr, descriptions[name])
+            entries += entry_template.format(tex_clean(name), 
+                                             dtstr, tex_clean(descriptions[name]))
         tbl = template.format(options=options, 
                               label=label.format(name), 
                               caption=caption.format(name), 
