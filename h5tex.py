@@ -45,8 +45,9 @@ tex_replace = {
 
 _tbl_template = """\\begin{{table}}[{options}]
 \centering
+\caption{{
 \label{{{label}}}
-\caption{{{caption}}}
+{caption}}}
 \\begin{{tabularx}}{{{layout}}} % line wraps second column if too long
 \hline
 {header}
