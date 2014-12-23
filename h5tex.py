@@ -47,11 +47,11 @@ _tbl_template = """\\begin{{table}}[{options}]
 \centering
 \label{{{label}}}
 \caption{{{caption}}}
-\\begin{{tabular}}{{{layout}}}
+\\begin{{tabularx}}{{{layout}}} % line wraps second column if too long
 \hline
 {header}
 {entries}
-\end{{tabular}}
+\end{{tabularx}}
 \end{{table}}
 """
 
@@ -162,11 +162,12 @@ def main():
         if args.debug:
             print(s)
         name = s.split('/')[-1]
-        options = rc.options or ''
+        options = rc.options or 'h!'
         label = rc.label or 'tbl:{0}'
         caption = rc.caption or \
-            'Datatype description of the {0} dataset.'
-        layout = rc.layout or '|c|c|c|'
+            ("Datatype description of the "
+             "\\lstinline[basicstyle=\\ttfamily\\color{{black}}]|{0}| dataset.")
+        layout = rc.layout or '\\columnwidth-10pt}{|c|c|X|'
         header = rc.header or ("\\textbf{Name} & \\textbf{Data Type} "
                                "& \\textbf{Description}       \\\\ \\hline")
         entry_template = rc.entry_template or "{0} & {1} & {2} \\\\ \\hline\n"
