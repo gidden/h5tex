@@ -2,6 +2,8 @@ from collections import defaultdict
 
 iddescr = "The hex value of a UUID"
 
+param = 'As described in \\S \\ref{method:setup}'
+
 descriptions = defaultdict(str, {
 'instid': iddescr + ' for an NFCTP graph instance.',
 'id': 'A uniquely identifying value.',
@@ -31,5 +33,43 @@ descriptions = defaultdict(str, {
 'cyclopts_version': 'The version of Cyclopts used to generate a solution.',
 'timestamp': 'A timestamp of when a solution was ran.',
 'pref_flow': 'The value of the product of preference and flow for arcs.',
+'c_pref_flow': 'The value of the product of commodity-based preference and flow for arcs.',
+'l_pref_flow': 'The value of the product of location-based preference and flow for arcs.',
+'family': 'A description of the problem family',
+'n_r_th': param,
+'n_r_f_mox': param,
+'n_r_f_thox': param,
+'n_s_uox': param,
+'n_s_th_mox': param,
+'n_s_f_mox': param,
+'n_s_f_thox': param,
+'n_s_repo': param,
+'d_f_mox': param,
+'d_f_thox': param,
+'d_th': param,
+'f_fc': param,
+'f_loc': param,
+'f_mox': param,
+'f_rxtr': param,
+'n_reg': param,
+'n_rxtr': param,
+'r_inv_proc': param,
+'r_l_c': param,
+'r_repo': param,
+'r_s_mox': param,
+'r_s_mox_uox': param,
+'r_s_th': param,
+'r_s_thox': param,
+'r_t_f': param,
+'r_th_pu': param,
+'seed': 'The random seed used to generate an instance.',
+'uid': 'Supply node for an arc.',
+'ucaps': 'Capacity coefficients for a supply node.',
+'vid': 'Request node for an arc.',
+'vcaps': 'Capacity coefficients for a request node.',
+'pref': 'Preference value of an arc.',
+'pref_l': 'Location-based preference of an arc.',
+'pref_c': 'Commodity-based preference of an arc.',
+'commod': 'The commodity associated with an arc.',
 })
 
