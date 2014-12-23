@@ -116,8 +116,10 @@ def datatypes(f, dataset):
     typelines = result[
         first_idx('DATATYPE', result) + 1:first_idx('DATASPACE', result) - 1]
     idxs = zip(all_idxs('{', typelines), all_idxs('}', typelines))
-    if len(idxs) > 0:
+    if len(idxs) > 0: 
         insert_single_lines(idxs, len(typelines))
+    if len(idxs) == 0 and len(typelines) > 0: # no strs, 1 line per type
+        idxs = [(x, x) for x in range(len(typelines))] 
     typelines = [typelines[i:j + 1] for i, j in idxs]
     return [read_type(x) for x in typelines]
 
@@ -154,7 +156,6 @@ def main():
         template = _tbl_template
 
     for s in sets:
-        print(s)
         if args.skip and re.match(args.skip, s):
             print('skipping', s)
             continue
@@ -172,11 +173,12 @@ def main():
         descriptions = rc.descriptions or defaultdict(str)
         entries = ''
         for col, dtstr in datatypes(db, s):
+            #print(col)
             entries += entry_template.format(tex_clean(col), 
                                              dtstr, tex_clean(descriptions[col]))
         tbl = template.format(options=options, 
-                              label=label.format(name), 
-                              caption=caption.format(name), 
+                              label=label.format(s), 
+                              caption=caption.format(s), 
                               layout=layout, 
                               header=header, 
                               entries=entries.strip())
