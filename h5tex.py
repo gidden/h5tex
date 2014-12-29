@@ -45,9 +45,9 @@ tex_replace = {
 
 _tbl_template = """\\begin{{table}}[{options}]
 \centering
-\caption{{
-\label{{{label}}}
-{caption}}}
+\label{{
+\caption{{{caption}}}
+{label}}}
 \\begin{{tabularx}}{{{layout}}} % line wraps second column if too long
 \hline
 {header}
@@ -167,7 +167,7 @@ def main():
         label = rc.label or 'tbl:{0}'
         caption = rc.caption or \
             ("Datatype description of the "
-             "\\lstinline[basicstyle=\\ttfamily\\color{{black}}]|{0}| dataset.")
+             "\\texttt{{{0}}} dataset.")
         layout = rc.layout or '\\columnwidth-10pt}{|c|c|X|'
         header = rc.header or ("\\textbf{Name} & \\textbf{Data Type} "
                                "& \\textbf{Description}       \\\\ \\hline")
